@@ -1,0 +1,16 @@
+flask_appbuilder
+Flask
+Flask-Admin
+Flask-SQLAlchemy
+shapely
+geoalchemy2
+psycopg2-binary
+flask_marshmallow
+pillow
+flask_restful
+flask_cors
+pandas
+openpyxl
+
+requests
+folium

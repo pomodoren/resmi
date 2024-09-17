@@ -1,0 +1,78 @@
+{
+    "public_transport_routes": {
+        "description": "Fetches bus routes for the city",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (relation[\"type\"=\"route\"][\"route\"=\"bus\"](area.searchArea);); out body geom; >; out skel qt;"
+    },
+    "public_transport_stops": {
+        "description": "Fetches bus stops for the city",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (node[\"highway\"=\"bus_stop\"](area.searchArea);); out body geom; >; out skel qt;"
+    },
+    "benches_at_stops": {
+        "description": "Fetches bus stops and checks if they have benches",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (node[\"highway\"=\"bus_stop\"](area.searchArea);); out body; out body qt; {{style: node[bench=yes] { color:green; fill-color:green; } node[bench=no], node[!bench] { color:red; fill-color:red; }}}"
+    },
+    "cycling_pathways": {
+        "description": "Fetches cycling pathways",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (way[\"highway\"=\"cycleway\"](area.searchArea); way[\"bicycle\"=\"designated\"](area.searchArea);); out body geom;>;out skel qt;"
+    },
+    "bicycle_parking": {
+        "description": "Fetches bicycle parking spots",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (nwr[\"amenity\"=\"bicycle_parking\"](area.searchArea);); out body geom;>;out skel qt;"
+    },
+    "taxi_stations": {
+        "description": "Fetches taxi stations",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (nwr[\"amenity\"=\"taxi\"](area.searchArea);); out body geom;>;out skel qt;"
+    },
+    "charging_stations": {
+        "description": "Fetches charging stations for electric vehicles",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (nwr[\"amenity\"=\"charging_station\"](area.searchArea);); out body geom;>;out skel qt;"
+    },
+    "sidewalks": {
+        "description": "Fetches sidewalks and pedestrian pathways",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (way[\"highway\"=\"footway\"](area.searchArea); way[\"highway\"=\"pedestrian\"](area.searchArea); way[\"footway\"=\"sidewalk\"](area.searchArea);); out body geom; >; out skel qt;"
+    },
+    "crossings": {
+        "description": "Fetches pedestrian crossings",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (node[\"highway\"=\"crossing\"](area.searchArea);); out body geom; >; out skel qt; {{style: node[crossing_ref=zebra] { color:black; symbol-size:10; } node[button_operated=no] { color:red; symbol-size:10; } node[crossing=uncontrolled] { color:green; symbol-size:10; }}}"
+    },
+    "benches_and_fountains": {
+        "description": "Fetches benches and fountains",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (node[\"amenity\"=\"bench\"](area.searchArea); node[\"amenity\"=\"fountain\"](area.searchArea);); out body geom; >; out skel qt; {{style: node[amenity=bench] { color:darkgreen; symbol-size:10; } node[amenity=fountain] { color:red; symbol-size:10; }}}"
+    },
+    "trees": {
+        "description": "Fetches tree locations",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (node[\"natural\"=\"tree\"][!\"barrier\"](area.searchArea);); out body geom; >; out skel qt; {{style: node[natural=tree] { color:darkgreen; }}}"
+    },
+    "parking_spaces": {
+        "description": "Fetches parking spaces",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (node[\"amenity\"=\"parking\"](area.searchArea); way[\"amenity\"=\"parking\"](area.searchArea); relation[\"amenity\"=\"parking\"](area.searchArea);); out body geom;>;out skel qt;"
+    },
+    "main_roads": {
+        "description": "Fetches main roads like motorways, trunks, and primary roads",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (nwr[\"highway\"=\"motorway\"](area.searchArea); nwr[\"highway\"=\"trunk\"](area.searchArea); nwr[\"highway\"=\"primary\"](area.searchArea);); out body geom;>;out skel qt;"
+    },
+    "secondary_roads": {
+        "description": "Fetches secondary and tertiary roads",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (nwr[\"highway\"=\"secondary\"](area.searchArea); nwr[\"highway\"=\"tertiary\"](area.searchArea);); out body geom;>;out skel qt;"
+    },
+    "service_roads": {
+        "description": "Fetches residential and service roads",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (nwr[\"highway\"=\"residential\"](area.searchArea); nwr[\"highway\"=\"service\"](area.searchArea);); out body geom;>;out skel qt;"
+    },
+    "roads_under_construction": {
+        "description": "Fetches roads under construction",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (nwr[\"highway\"=\"construction\"](area.searchArea);); out body geom;>;out skel qt;"
+    },
+    "traffic_signals": {
+        "description": "Fetches traffic signals",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (nwr[\"crossing\"=\"traffic_signals\"](area.searchArea);); out body geom;>;out skel qt;"
+    },
+    "street_lamps": {
+        "description": "Fetches street lamps",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (nwr[\"highway\"=\"street_lamp\"](area.searchArea);); out body geom;>;out skel qt;"
+    },
+    "traffic_calming": {
+        "description": "Fetches traffic calming measures",
+        "query": "[out:json][timeout:50]; area[\"name\"=\"__CITY__\"]->.searchArea; (nwr[~\"^traffic_calming$\"~\".*\"](area.searchArea);); out body geom;>;out skel qt; {{style: node[traffic_calming=bump] { color:green; } node[traffic_calming=hump] { color:pink; } node[traffic_calming=island] { color:grey; } node[traffic_calming=rumble_strip] { color:red; }}}"
+    }
+}

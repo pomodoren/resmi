@@ -1,0 +1,71 @@
+{% extends "admin/custom_base.html" %}
+{% block body %}
+
+<style>
+
+    .bordered {
+        border: 1px solid grey;
+        padding: 4px;
+        box-shadow: 5px 10px lightgrey;
+    }
+
+</style>
+
+<div class="jumbotron bordered" style="background-color: #f2f2f2;"> <!-- Light grey -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="container">
+        <br><br>
+        <h2>{{_("Assets Inventory")}}</h2>
+        <br>
+        <p>{{_("Keep track of all physical assets involved in urban mobility. Monitor, update, and manage your asset inventory efficiently.")}}</p>
+        <br>
+        </div>
+      </div>
+      <div class="col-md-6">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
+
+<div class="jumbotron bordered" style="background-color: lightblue;"> <!-- Light blue -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+      </div>
+      <div class="col-md-6">
+        <br><br>
+        <h2>{{_("Fieldwork Management")}}</h2>
+        <br>
+        <p>{{_("Organize and track field operations with our project management tools. Schedule activities, create checklists, and ensure timely project completion.")}}</p>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
+
+<div class="jumbotron bordered" style="background-color: lightgoldenrodyellow;"> <!-- Light red -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <br><br>
+        <h2>{{_("Issue Tracking")}}</h2>
+        <br>
+        <p>{{_("Identify and resolve infrastructure issues effectively. Report, track, and manage issues to improve urban infrastructure resilience.")}}</p>
+      
+        <br>
+      </div>
+      <div class="col-md-6">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

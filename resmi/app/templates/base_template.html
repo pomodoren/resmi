@@ -1,0 +1,63 @@
+{% extends 'appbuilder/baselayout.html' %}
+
+{% block head_css %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol/ol.css" type="text/css">
+
+{% endblock %}
+
+{% block head_js %}
+{{ super() }}
+
+<!-- Bootstrap core JS-->
+<link href="{{ url_for('static', filename='js/script.js') }}">
+<script src="https://cdn.jsdelivr.net/npm/ol/ol.js"></script>
+
+{% endblock %}
+
+{% block content %}
+
+{% block navbar %}
+{{super()}}
+{% endblock %}
+
+<div id="content">
+    {{ super() }}
+</div>
+{% endblock %}
+
+{% block footer %}
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+
+<footer>
+    <div style="border: 2px solid grey; background-color: rgb(48, 46, 46); color: white !important; ">
+        <br>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Resources</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Support Area</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h4>Contact</h4>
+                <p>Please report issues in<br><a href="#">github</a>.</p>
+            </div>
+            <div class="col-md-6">
+                <h4>About</h4>
+                <p>This project is a work in progress.</p>
+                <p>Designed and developed by the resmi team to enhance urban mobility asset management.</p>
+                <p>&copy; 2024 resmi Contributors. <br> License.</p>
+            </div>
+        </div>
+        </div> 
+        <br><br>
+    </div>
+</footer>
+{% endblock %}

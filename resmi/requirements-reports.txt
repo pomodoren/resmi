@@ -1,0 +1,8 @@
+jupyterlab
+pandas
+numpy
+matplotlib
+voila
+calplot
+seaborn
+jupyter-book

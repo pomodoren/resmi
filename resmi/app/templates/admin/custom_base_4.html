@@ -1,0 +1,216 @@
+{% import 'admin/layout.html' as layout with context -%}
+{% import 'admin/static.html' as admin_static with context %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{% block title %}{% if admin_view.category %}{{ admin_view.category }} - {% endif %}{{ admin_view.name }} -
+    {{ admin_view.admin.name }}{% endblock %}</title>
+  {% block head_meta %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  {% endblock %}
+  {% block head_css %}
+  <link href="{{ admin_static.url(filename='bootstrap/bootstrap4/swatch/{swatch}/bootstrap.min.css'.format(swatch=config.get('FLASK_ADMIN_SWATCH', 'default')), v='4.2.1') }}"
+  rel="stylesheet">
+{% if config.get('FLASK_ADMIN_SWATCH', 'default') == 'default' %}
+<link href="{{ admin_static.url(filename='bootstrap/bootstrap4/css/bootstrap.min.css', v='4.2.1') }}" rel="stylesheet">
+{% endif %}
+<link href="{{ admin_static.url(filename='admin/css/bootstrap4/admin.css', v='1.1.1') }}" rel="stylesheet">
+<link href="{{ admin_static.url(filename='bootstrap/bootstrap4/css/font-awesome.min.css', v='4.7.0') }}" rel="stylesheet">
+{% if admin_view.extra_css %}
+{% for css_url in admin_view.extra_css %}
+<link href="{{ css_url }}" rel="stylesheet" {{ admin_csp_nonce_attribute }}>
+{% endfor %}
+{% endif %}
+  <style>
+    /* Custom CSS for full-screen header */
+    .navbar-starter {
+      width: 100%;
+      background-color: black;
+      /* Change header background color */
+    }
+
+    .navbar-brand {
+      color: #fff;
+      /* Change header text color */
+    }
+
+    .bd-placeholder-img {
+      font-size: 1.95rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .btn-bd-primary {
+      --bd-violet-bg: #712cf9;
+      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+      --bs-btn-font-weight: 600;
+      --bs-btn-color: var(--bs-white);
+      --bs-btn-bg: var(--bd-violet-bg);
+      --bs-btn-border-color: var(--bd-violet-bg);
+      --bs-btn-hover-color: var(--bs-white);
+      --bs-btn-hover-bg: #6528e0;
+      --bs-btn-hover-border-color: #6528e0;
+      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+      --bs-btn-active-color: var(--bs-btn-hover-color);
+      --bs-btn-active-bg: #5a23c8;
+      --bs-btn-active-border-color: #5a23c8;
+    }
+
+    .bd-mode-toggle {
+      z-index: 1500;
+    }
+
+    .bd-mode-toggle .dropdown-menu .active .bi {
+      display: block !important;
+    }
+
+    .form-control-dark {
+      border-color: var(--bs-gray);
+    }
+
+    .form-control-dark:focus {
+      border-color: #fff;
+      box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
+    }
+
+    .text-small {
+      font-size: 85%;
+    }
+
+    .dropdown-toggle:not(:focus) {
+      outline: 0;
+    }
+  </style>
+  {% if admin_view.extra_css %}
+  {% for css_url in admin_view.extra_css %}
+  <link href="{{ css_url }}" rel="stylesheet">
+  {% endfor %}
+  {% endif %}
+  <style>
+    body {
+      padding-top: 4px;
+    }
+  </style>
+  {% endblock %}
+  {% block head %}
+  {% endblock %}
+  {% block head_tail %}
+  {% endblock %}
+</head>
+
+<body>
+  {% block page_body %}
+  <div class="navbar-starter">
+    <div class="navbar container" style="padding:13px;">
+      <div class="navbar-inner">
+        {% block brand %}
+        <a class="brand" href="{{ admin_view.admin.url }}"
+          style="font-size: 24px; color: white;font-weight: bolder;;">{{ admin_view.admin.name }}</a>&nbsp;&nbsp;
+        {% endblock %}
+        {% block main_menu %}
+
+        <ul class="nav">
+          {{ layout.menu() }}
+        </ul>
+        {% endblock %}
+        {% block menu_links %}
+        <ul class="nav pull-right">
+          {{ layout.menu_links() }}
+        </ul>
+        {% endblock %}
+        {% block access_control %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+
+  {% block messages %}
+  {{ layout.messages() }}
+  {% endblock %}
+
+  {# store the jinja2 context for form_rules rendering logic #}
+  {% set render_ctx = h.resolve_ctx() %}
+
+  <div class="container">
+
+    {% block body %}{% endblock %}
+  </div>
+  </div>
+  {% endblock %}
+
+  {% block tail_js %}
+  <script src="{{ admin_static.url(filename='vendor/jquery.min.js', v='3.5.1') }}" type="text/javascript"></script>
+  <script src="{{ admin_static.url(filename='bootstrap/bootstrap4/js/popper.min.js') }}" type="text/javascript"></script>
+  <script src="{{ admin_static.url(filename='bootstrap/bootstrap4/js/bootstrap.min.js', v='4.2.1') }}"
+          type="text/javascript"></script>
+  <script src="{{ admin_static.url(filename='vendor/moment.min.js', v='2.9.0') }}" type="text/javascript"></script>
+  <script src="{{ admin_static.url(filename='vendor/bootstrap4/util.js', v='4.3.1') }}" type="text/javascript"></script>
+  <script src="{{ admin_static.url(filename='vendor/bootstrap4/dropdown.js', v='4.3.1') }}" type="text/javascript"></script>
+  <script src="{{ admin_static.url(filename='vendor/select2/select2.min.js', v='4.2.1') }}"
+          type="text/javascript"></script>
+  <script src="{{ admin_static.url(filename='vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js') }}" type="text/javascript"></script>
+  <script src="{{ admin_static.url(filename='admin/js/helpers.js', v='1.0.0') }}" type="text/javascript"></script>
+  {% if admin_view.extra_js %}
+      {% for js_url in admin_view.extra_js %}
+          <script src="{{ js_url }}" type="text/javascript"></script>
+      {% endfor %}
+  {% endif %}
+  {% endblock %}
+
+  {% block tail %}
+  {% endblock %}
+</body>
+
+</html>

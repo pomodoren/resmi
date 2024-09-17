@@ -1,0 +1,9 @@
+FROM postgres:16.1
+
+
+RUN apt-get update && apt-get  install -y postgresql-16-postgis-3  
+
+# Copy init SQL file to run it on container startup
+COPY ./infra/initdb-postgis.sql /docker-entrypoint-initdb.d/
+
+CMD ["/usr/local/bin/docker-entrypoint.sh","postgres"]

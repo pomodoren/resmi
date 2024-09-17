@@ -1,0 +1,32 @@
+
+{% set menu = appbuilder.menu %}
+{% set languages = appbuilder.languages %}
+
+
+<div class="navbar {{menu.extra_classes}}" role="navigation" style="padding:13px;">
+  <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+     
+              <span class="navbar-brand">
+              <a style="font-size: 24px; color: white;font-weight: bolder;;" href="{{appbuilder.get_url_for_index}}">
+              {{ appbuilder.app_name }}
+              </a>
+              </span>&nbsp;
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                {% include 'appbuilder/navbar_menu.html' %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% include 'appbuilder/navbar_right.html' %}
+            </ul>
+        </div>
+  </div>
+</div>
+
+<br>

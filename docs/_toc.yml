@@ -1,0 +1,80 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: Background
+  chapters:
+  - title: Why resmi?
+    file: content/background/why_resmi.md
+  
+  - title: Data and Tools
+    file: content/background/data_and_tools.md
+    sections:
+    - title: OpenStreetMap Data
+      file: content/background/open_ecosystem.md
+    - title: Open-Source Tools
+      file: content/background/open_source_tools.md
+    - title: A city portrait
+      file: content/background/urban_development.md
+    - title: A mobility potrait
+      file: content/background/mobility.md
+  - title: Related solutions
+    file: content/background/why_not_host.md
+
+- caption: Tutorials
+  chapters:
+  - title: Importing data
+    file: content/tutorials/import_osm.md
+  - title: Asset Management
+    file: content/tutorials/assets.md
+    sections:
+    - title: Creating an Asset
+      url: http://assets.ss
+    - title: Standard Tags
+      url: http://asdstsa.dms
+    - title: Getting current status
+      url: http://getting.stat
+  - title: Fieldwork
+    file: content/tutorials/fieldwork.md
+    sections:
+    - title: Creating an Asset
+      url: http://assetasdsas.ss
+  - title: Issues
+    file: content/tutorials/issues.md
+    sections:
+    - title: Creating an Asset
+      url: http://asdasdasassets.ss
+  - title: Resilience Scenarios
+    file: content/tutorials/resilience.md
+    sections:
+    - title: Creatiasdasdng an Asset
+      url: http://asdasdasd.ss
+
+
+- caption: Use cases
+  chapters:
+  - title: Tirana
+    url: http://tirana.al
+
+
+- caption: About
+  chapters:
+  - title: Technical Specifications
+    file: content/technical/technical.md
+    sections:
+    - title: Installation
+      file: content/technical/installation.md
+    - title: Database
+      file: content/technical/database.md
+    - title: Reporting
+      file: content/technical/reporting.md
+    - title: API
+      file: content/technical/api.md
+  - title: GIZ
+    url: https://giz.de
+  - title: Github Repository
+    url: https://changing-transport.org/
+  - title: How to Contribute
+    file: content/about/contribute.md

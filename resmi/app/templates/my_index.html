@@ -1,0 +1,463 @@
+{% extends "appbuilder/base.html" %}
+{% block content %}
+
+<style>
+      .tagline {
+            text-align: center;
+            font-size: 44px;
+            font-weight: bold;
+            color: #333;
+        }
+        .tagline-highlight {
+            background-color: #2196F3;
+            color: white;
+            padding: 0 10px;
+            border-radius: 5px;
+        }
+        .tagline-subtext {
+            display: block;
+            font-size: 24px;
+            color: #666;
+            margin-top: 10px;
+            font-weight: normal;
+        }
+        .underline {
+            text-decoration: underline;
+            text-decoration-color: #4CAF50;
+            
+            text-decoration-thickness: 4px;
+            text-underline-offset: 4px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 40px;
+            color: #333;
+        }
+        .module-category {
+            margin-bottom: 80px;
+        }
+        .module-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+
+        }
+        .module-list li {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-right: 3px solid #ddd;
+            border-bottom: 5px solid #ddd;
+
+            border-radius: 8px;
+            padding: 20px;
+            flex: 1 1 30%;
+            max-width: 30%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+        .module-list li:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .module-icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+        }
+        .module-title {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .module-description {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* Deactivated module styles */
+        .deactivate .module-title {
+            color: #999;
+        }
+        .deactivate .module-icon {
+            background-color: #ccc;
+        }
+        .deactivate .module-description {
+            color: #aaa;
+        }
+
+        .deactivate .module-icon {
+            background-color: #aaa;
+            
+        }
+
+        /* Colors for each group */
+        .importers .module-icon {
+            background-color: #4CAF50;
+        }
+        .portraits .module-icon {
+            background-color: #2196F3;
+        }
+        .my-assets .module-icon {
+            background-color: #FF9800;
+        }
+        .mobility-toolkit .module-icon {
+            background-color: #9C27B0;
+        }
+        .fieldwork .module-icon {
+            background-color: #FF5722;
+        }
+        .issues .module-icon {
+            background-color: #795548;
+        }
+        .hazards .module-icon {
+            background-color: #F44336;
+        }
+        .ai .module-icon {
+            background-color: teal;
+        }
+
+</style>
+  <br><br>
+    <div class="tagline">
+        Manage your mobility assets with <span class="tagline-highlight">ease</span>.<br>
+        <span class="tagline-subtext">Simple, <span class="underline">powerful</span>, and transparent!</span>
+    </div>
+    <br><br>
+    <div class="module-category importers">
+        <h2><b>Module 1</b>: Importers and Exporters</h2>
+        <ul class="module-list">
+            <li>
+                <div class="module-icon">
+                    <i class="fas fa-city"></i>
+                </div>
+                <div>
+                    <div class="module-title"><a href="#">City.zip Exporter</a></div>
+                    <div class="module-description">Import OpenStreetMap data</div>
+                </div>
+            </li>
+            <li>
+                <div class="module-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                    <div class="module-title"><a href="#">City.zip Importer</a></div>
+                    <div class="module-description">Import OpenStreetMap data</div>
+                </div>
+            </li>
+            <li>
+                <div class="module-icon">
+                    <i class="fas fa-bus"></i> 
+                </div>
+                <div>
+                    <div class="module-title"><a href="#">Mobility.zip Exporter</a></div>
+                    <div class="module-description">Import OpenStreetMap data</div>
+                </div>
+            </li>
+            <li>
+                <div class="module-icon">
+                    <i class="fas fa-shuttle-van"></i> 
+                </div>
+                <div>
+                    <div class="module-title"><a href="#">Mobility.zip Importer</a></div>
+                    <div class="module-description">Import OpenStreetMap data</div>
+                </div>
+            </li>
+            <li>
+                <div class="module-icon">
+                    <i class="fas fa-file-excel"></i> 
+                </div>
+                <div>
+                    <div class="module-title"><a href="#">Excel Importers</a></div>
+                    <div class="module-description">Import data from Excel files</div>
+                </div>
+            </li>
+            <li>
+                <div class="module-icon">
+                    <i class="fas fa-file-export"></i>
+                </div>
+                <div>
+                    <div class="module-title"><a href="#">Excel Exporters</a></div>
+                    <div class="module-description">Export data to Excel files</div>
+                </div>
+            </li>
+            <li class="deactivate">
+                <div class="module-icon">
+                    <i class="fas fa-bus-alt"></i>
+                </div>
+                <div>
+                    <div class="module-title">GTFS</div>
+                    <div class="module-description">Import GTFS data for public transport</div>
+                </div>
+            </li>
+            <li class="deactivate">
+                <div class="module-icon">
+                    <i class="fas fa-bicycle"></i> 
+                </div>
+                <div>
+                    <div class="module-title">GBFS</div>
+                    <div class="module-description">Import GBFS data for bike sharing</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="module-category portraits">
+      <h2><b>Module 2</b>: Open Data Portraits</h2>
+      <ul class="module-list">
+          <li class="deactivate">
+              <div class="module-icon">
+                  <i class="fas fa-city"></i>
+              </div>
+              <div>
+                  <div class="module-title">City Portrait</div>
+                  <div class="module-description">Create a comprehensive city portrait</div>
+              </div>
+          </li>
+          <li class="deactivate">
+              <div class="module-icon">
+                  <i class="fas fa-briefcase"></i>
+              </div>
+              <div>
+                  <div class="module-title">Mobility Portrait</div>
+                  <div class="module-description">Develop a detailed portrait of mobility services in the city</div>
+              </div>
+          </li>
+          <li class="deactivate">
+              <div class="module-icon">
+                  <i class="fas fa-briefcase"></i>
+              </div>
+              <div>
+                  <div class="module-title">GTFS Portrait</div>
+                  <div class="module-description">Describe the public transport service through graphs.</div>
+              </div>
+          </li>
+      </ul>
+    </div>
+
+    
+
+<div class="module-category my-assets">
+  <h2><b>Module 3</b>: Assets Explorer</h2>
+  <ul class="module-list">
+    <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <div>
+              <div class="module-title">GeoAssets</div>
+              <div class="module-description">Track and manage geographical assets</div>
+          </div>
+      </li>
+      <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-users"></i>
+          </div>
+          <div>
+              <div class="module-title">Relations</div>
+              <div class="module-description">Manage relationships between assets</div>
+          </div>
+      </li>
+      <li class="deactivate">
+            <div class="module-icon">
+                <i class="fas fa-layer-group"></i>
+            </div>
+            <div>
+                <div class="module-title">Asset Groups</div>
+                <div class="module-description">Organize assets into groups</div>
+            </div>
+        </li>
+  </ul>
+</div>
+
+<div class="module-category mobility-toolkit">
+  <h2><b>Module 4</b>: Mobility Toolkit</h2>
+  <ul class="module-list">
+    <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-bus-alt"></i>
+          </div>
+          <div>
+              <div class="module-title">Public Transport Toolkit</div>
+              <div class="module-description">Tools for managing public transport</div>
+          </div>
+      </li>
+      <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-bicycle"></i>
+          </div>
+          <div>
+              <div class="module-title">Cycling Infrastructure</div>
+              <div class="module-description">Manage and improve cycling routes</div>
+          </div>
+      </li>
+      <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-walking"></i>
+          </div>
+          <div>
+              <div class="module-title">Walking</div>
+              <div class="module-description">Enhance walking infrastructure</div>
+          </div>
+      </li>
+      <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-parking"></i>
+          </div>
+          <div>
+              <div class="module-title">Parking Stations</div>
+              <div class="module-description">Manage parking facilities</div>
+          </div>
+      </li>
+      <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-road"></i>
+          </div>
+          <div>
+              <div class="module-title">Road Infrastructure</div>
+              <div class="module-description">Maintain and improve road networks</div>
+          </div>
+      </li>
+  </ul>
+</div>
+
+<div class="module-category fieldwork">
+  <h2><b>Module 5</b>: FieldWork</h2>
+  <ul class="module-list">
+      <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-database"></i>
+          </div>
+          <div>
+              <div class="module-title">Condition Data</div>
+              <div class="module-description">Collect and analyze condition data</div>
+          </div>
+      </li>
+      <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-tools"></i>
+          </div>
+          <div>
+              <div class="module-title"> Maintenance</div>
+              <div class="module-description">Schedule and track maintenance tasks</div>
+          </div>
+      </li>
+  </ul>
+</div>
+
+<div class="module-category issues">
+  <h2><b>Module 6</b>: Issues</h2>
+  <ul class="module-list">
+    <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-sticky-note"></i>
+          </div>
+          <div>
+              <div class="module-title"> GeoNotes</div>
+              <div class="module-description">Manage internal notes and documentation</div>
+          </div>
+      </li>
+      <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-comments"></i>
+          </div>
+          <div>
+              <div class="module-title"> Public Feedback</div>
+              <div class="module-description">Collect and analyze public feedback</div>
+          </div>
+      </li>
+  </ul>
+</div>
+
+<div class="module-category hazards">
+  <h2><b>Module 7</b>: Events</h2>
+  <ul class="module-list">
+    <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-database"></i>
+          </div>
+          <div>
+              <div class="module-title">Hazard Data</div>
+              <div class="module-description">Add hazard information on the area</div>
+          </div>
+      </li>
+      <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-fire"></i>
+          </div>
+          <div>
+              <div class="module-title"> Fire Scenario</div>
+              <div class="module-description">Plan for fire-related hazards</div>
+          </div>
+      </li>
+      <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-water"></i>
+          </div>
+          <div>
+              <div class="module-title">Flood Scenario</div>
+              <div class="module-description">Manage flood risks and scenarios</div>
+          </div>
+      </li>
+      <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-exchange-alt"></i>
+          </div>
+          <div>
+              <div class="module-title">Rerouting</div>
+              <div class="module-description">Handle rerouting in case of hazards</div>
+          </div>
+      </li>
+      <li class="deactivate">
+          <div class="module-icon">
+              <i class="fas fa-stats"></i>
+          </div>
+          <div>
+              <div class="module-title">Service Isochrones Risk</div>
+              <div class="module-description">Assess risks based on service isochrones</div>
+          </div>
+      </li>
+  </ul>
+</div>
+
+
+
+<div class="module-category ai">
+    <h2><b>Module 8</b>: AI</h2>
+    <ul class="module-list">
+      <li class="deactivate">
+            <div class="module-icon">
+                <i class="fas fa-sticky-note"></i>
+            </div>
+            <div>
+                <div class="module-title">Traffic Data</div>
+                <div class="module-description">Get traffic data</div>
+            </div>
+        </li>
+        <li class="deactivate">
+            <div class="module-icon">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div>
+                <div class="module-title">Traffic Scenarios</div>
+                <div class="module-description">Collect and analyze public feedback</div>
+            </div>
+        </li>
+    </ul>
+  </div>
+  
+{% endblock %}

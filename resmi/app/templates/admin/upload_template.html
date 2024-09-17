@@ -1,0 +1,110 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Upload OSM JSON File</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Multistep Form Start -->
+                        <form id="multistep-form" method="POST" enctype="multipart/form-data">
+                            {{ form.hidden_tag() }}
+
+                            <!-- Step 1: File Selection -->
+                            <div class="form-step form-step-active">
+                                <div class="form-group">
+                                    <label for="file" class="form-label">Upload OSM File</label>
+                                    {{ form.file(class_="form-control") }}
+                                    <small class="form-text text-muted">Please upload a .json file.</small>
+                                </div>
+                                <div class="form-group text-center">
+                                    <button type="button" class="btn btn-primary" id="next-btn">Next</button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: File Confirmation -->
+                            <div class="form-step">
+                                <div class="alert alert-info">
+                                    <p>File <strong id="file-name">No file selected</strong> is ready for upload. Do you want to proceed?</p>
+                                </div>
+                                <div class="form-group text-center">
+                                    <button type="button" class="btn btn-secondary" id="prev-btn">Previous</button>
+                                    {{ form.submit(class_="btn btn-success") }}
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Multistep Form End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Multistep Form JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const steps = document.querySelectorAll('.form-step');
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const fileNameDisplay = document.getElementById('file-name');
+            const fileInput = document.querySelector('input[type="file"]');
+
+            let currentStep = 0;
+
+            // Show the current step
+            function showStep(step) {
+                steps.forEach((formStep, index) => {
+                    formStep.classList.toggle('form-step-active', index === step);
+                });
+            }
+
+            // Proceed to the next step
+            nextBtn.addEventListener('click', function () {
+                if (fileInput.files.length > 0) {
+                    fileNameDisplay.textContent = fileInput.files[0].name;
+                    currentStep++;
+                    showStep(currentStep);
+                } else {
+                    alert('Please select a file before proceeding.');
+                }
+            });
+
+            // Go back to the previous step
+            prevBtn.addEventListener('click', function () {
+                currentStep--;
+                showStep(currentStep);
+            });
+
+            // Initialize the form
+            showStep(currentStep);
+        });
+    </script>
+
+    <style>
+        /* Styling for the form steps */
+        .form-step {
+            display: none;
+        }
+
+        .form-step-active {
+            display: block;
+        }
+
+        .card {
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            margin: 10px;
+        }
+
+        .card-header {
+            border-bottom: none;
+            font-size: 1.5rem;
+        }
+    </style>
+{% endblock %}

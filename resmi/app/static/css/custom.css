@@ -1,0 +1,18 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#content {
+    min-height: 100%;
+    /* Account for footer height */
+    padding-bottom: 60px;  /* Adjust this value based on your footer's actual height */
+    box-sizing: border-box;  /* Includes padding in the height calculation */
+}
+
+
+.bordered {
+    border: 1px solid grey;
+    padding: 4px;
+    box-shadow: 5px 10px lightgrey;
+}
